@@ -11,6 +11,7 @@ function App() {
           alt="logo"
         />{' '}
         <p>Random meme generator</p>
+        <br />
         <MemeGenerator />
       </header>
     </div>

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import './index.css';
 
-let memes: [];
-
 class MemeGenerator extends Component {
   constructor() {
     super();
     this.state = {
-      topText: '',
-      bottomText: '',
-      randomImg: 'https://api.memegen.link/images/aag.png',
-      allMemeImgs: [],
+      topText: '', // Initialization of the top text
+      bottomText: '', // Initialization of the bottom text
+      randomImg: 'https://api.memegen.link/images/aag.png', // Initialization of the photo
+      allMemeImgs: [], // Initialization of the allMemeImgs array
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,9 +18,8 @@ class MemeGenerator extends Component {
     fetch('https://api.memegen.link/templates/')
       .then((response) => response.json())
       .then((response) => {
-        memes = response.data; // Put the data from resulting json to the array called memes
-
-        this.setState({ allMemeImgs: memes });
+        const arrayOfMemes = response.data; // Put the data from resulting json to the array called arrayOfMemes
+        this.setState({ allMemeImgs: arrayOfMemes });
       });
   }
 
@@ -33,7 +30,8 @@ class MemeGenerator extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
+    const randNum = [(Math.random() * this.state.allMemeImgs.length) | 0];
+    // const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
     const randMemeImg = this.state.allMemeImgs[randNum].url;
     this.setState({ randomImg: randMemeImg });
   }
@@ -57,8 +55,9 @@ class MemeGenerator extends Component {
             onChange={this.handleChange}
           />
 
-          <button>Generate</button>
+          <button>New photo</button>
         </form>
+        <br />
         <div className="meme">
           <img src={this.state.randomImg} alt="" />
           <h2 className="top">{this.state.topText}</h2>
