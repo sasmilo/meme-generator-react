@@ -15,11 +15,13 @@ class MemeGenerator extends Component {
   }
 
   componentDidMount() {
-    fetch('https://api.memegen.link/templates/')
-      .then((response) => response.json())
+    // ensure that data is fetched at the beginning
+    fetch('https://api.memegen.link/templates/') // call to URL
+      // .then((response) => response.json())
       .then((response) => {
-        const arrayOfMemes = response.data; // Put the data from resulting json to the array called arrayOfMemes
-        this.setState({ allMemeImgs: arrayOfMemes });
+        // const { arrayOfMemes } = response; // Put the resulting json to the array called arrayOfMemes
+
+        this.setState({ allMemeImgs: response }); // Now allMemeImgs contains an array of objects we fetched
       });
   }
 
@@ -32,7 +34,11 @@ class MemeGenerator extends Component {
     event.preventDefault();
     const randNum = [(Math.random() * this.state.allMemeImgs.length) | 0];
     // const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
-    const randMemeImg = this.state.allMemeImgs[randNum].url;
+    const randMemeImgObj = this.state.allMemeImgs[randNum]; // We got a random object from an array of the objects
+    const randMemeImg = function () {
+      return randMemeImgObj.blank;
+    };
+    // const randMemeImg = randMemeImgObj.blank;
     this.setState({ randomImg: randMemeImg });
   }
 
@@ -57,7 +63,6 @@ class MemeGenerator extends Component {
 
           <button>New photo</button>
         </form>
-        <br />
         <div className="meme">
           <img src={this.state.randomImg} alt="" />
           <h2 className="top">{this.state.topText}</h2>
