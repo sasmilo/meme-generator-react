@@ -29,7 +29,7 @@ function MemeGenerator() {
   }
   const topTextNoSpace = topText.replace(/ /g, '_');
   const bottomTextNoSpace = bottomText.replace(/ /g, '_');
-  const randImgNoExtension = randomImg.substring(0, randomImg.Length - 4);
+  const randImgNoExtension = randomImg.slice(0, randomImg.Length - 4);
   const memeUrl = randImgNoExtension.concat(
     '/',
     topTextNoSpace,
