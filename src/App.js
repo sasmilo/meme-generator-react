@@ -10,8 +10,7 @@ function App() {
           className="App-logo"
           alt="logo"
         />{' '}
-        <p>Random meme generator</p>
-        <br />
+        <p>RANDOM MEME GENERATOR</p>
         <MemeGenerator />
       </header>
     </div>

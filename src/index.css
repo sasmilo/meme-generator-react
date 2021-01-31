@@ -50,23 +50,29 @@ code {
 
 .meme-form {
   width: 90%;
+  column-gap: 2px;
+
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
 }
 
 .meme-form > input {
-  width: 45%;
+  width: 33%;
   height: 40px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
 }
 
 .meme-form > button {
   border: none;
-  font-family: sans-serif;
+  border-radius: 5px;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 15px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: white;
-  background: #343148ff;
+  background: rgb(35, 109, 101);
 }
 
 .meme-form > input::-webkit-input-placeholder {
