@@ -11,7 +11,7 @@ function MemeGenerator() {
   );
   const [allMemeImgs, setAllMemeImgs] = useState([]);
 
-  const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`;
+  const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`; // This is how meme URL is built
 
   useEffect(() => {
     fetch('https://api.memegen.link/templates/') // call to URL
@@ -34,34 +34,18 @@ function MemeGenerator() {
     setMemeKey(randMemeImgKey);
   }
 
-  // function replaceSymbol(string) {
-  //   const hashtag = { value: '#', sub: '~h' };
-  //   const questionMark = { value: '?', sub: '~q' };
-  //   const slash = { value: '/', sub: '~s' };
-  //   const space = { value: ' ', sub: '_' };
-
-  //   string = string.replaceAll(hashtag.value, hashtag.sub);
-  //   string = string.replaceAll(questionMark.value, questionMark.sub);
-  //   string = string.replaceAll(slash.value, slash.sub);
-  //   string = string.replaceAll(space.value, space.sub);
-
-  //   return string;
-  // }
-  // setTopText(replaceSymbol(topText));
-  // setBottomText(replaceSymbol(bottomText));
-
   const download = () => {
     axios({
-      url: memeUrl,
+      url: memeUrl, // Fetch the content from memeUrl
       method: 'GET',
-      responseType: 'blob',
+      responseType: 'blob', // Set response type to blob
     }).then((response) => {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'meme.png');
-      document.body.appendChild(link);
-      link.click();
+      const url = window.URL.createObjectURL(new Blob([response.data])); // Make object out of that blob response
+      const link = document.createElement('a'); // Create new anchor element in DOM
+      link.href = url; // Declare that href attribute of that anchor is our object
+      link.setAttribute('download', 'meme.png'); // Set the attributes of the anchor element in order to download content and give it a name
+      document.body.appendChild(link); // Append the anchor to the parent element
+      link.click(); // virtual click on link in order to trigger the anchor
     });
   };
 
