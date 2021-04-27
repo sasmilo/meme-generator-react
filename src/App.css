@@ -40,8 +40,12 @@
   }
 }
 
-p {
+h1 {
   font-family: 'Courier New', 'roboto', sans-serif;
 
   font-size: calc(20px + 3vmin);
+}
+
+button {
+  cursor: pointer;
 }

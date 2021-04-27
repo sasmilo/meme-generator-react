@@ -14,11 +14,11 @@ function MemeGenerator() {
   const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`; // This is how meme URL is built
 
   useEffect(() => {
-    fetch('https://api.memegen.link/templates/') // call to URL
+    fetch('https://api.memegen.link/templates/') // call to URL to get all meme photos
       .then((response) => response.json()) // We say that we want response in a form of JSON
       .then((response) => {
-        setAllMemeImgs(response); // Resulting JSON is the array of objects
-        // Now allMemeImgs contains an array of objects we fetched
+        setAllMemeImgs(response); // Resulting JSON is the array of memepic objects
+
       });
   }, []);
 
@@ -87,7 +87,7 @@ function MemeGenerator() {
       </form>
 
       <div className="meme">
-        <img src={randomImg} alt="" />
+        <img src={randomImg} alt="Meme" />
         <h2 className="top">{topText}</h2>
         <h2 className="bottom">{bottomText}</h2>
       </div>
