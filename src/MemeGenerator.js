@@ -52,6 +52,7 @@ function MemeGenerator() {
   const [timer, setTimer] = useState(null);
 
   function changeDelay(change) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (timer) {
       clearTimeout(timer);
       setTimer(null);
