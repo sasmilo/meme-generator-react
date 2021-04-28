@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src="/Trollface_non-free.png" className="App-logo" alt="logo" />{' '}
-        <h1>RANDOM MEME GENERATOR</h1>
+        <h1>MEME GENERATOR</h1>
       </header>
       <div className="App-body">
         <MemeGenerator />

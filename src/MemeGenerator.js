@@ -11,10 +11,7 @@ function MemeGenerator() {
   );
   const [allMemeImgs, setAllMemeImgs] = useState([]);
 
-
   const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`; // This is how meme URL is built
-
-
 
   useEffect(() => {
     fetch('https://api.memegen.link/templates/') // call to URL to get all meme photos
@@ -79,7 +76,7 @@ function MemeGenerator() {
             getNewMeme(e);
           }}
         >
-          New photo
+          Random photo
         </button>
 
         <button
