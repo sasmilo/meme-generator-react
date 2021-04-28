@@ -66,7 +66,6 @@ function MemeGenerator() {
 
   return (
     <div>
-      {/* <form className="meme-form" onSubmit={getNewMeme}> */}
       <form className="meme-form">
         <input
           type="text"
@@ -115,8 +114,8 @@ function MemeGenerator() {
         <h2 className="bottom">{bottomText}</h2>
       </div>
       <ul>
-        {allMemeImgs.map((meme, index) => (
-          <li key={index}>
+        {allMemeImgs.map((meme) => (
+          <li key={meme.id}>
             <input
               type="image"
               src={meme.blank}
