@@ -11,7 +11,23 @@ function MemeGenerator() {
   );
   const [allMemeImgs, setAllMemeImgs] = useState([]);
 
-  const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`; // This is how meme URL is built
+  function filterString(firstText) {
+    const underscoreText = firstText.replace(/_/g, '__');
+    const doubleSpaceText = underscoreText.replace(/ +/g, '_');
+    const spaceText = doubleSpaceText.replace(/ /g, '_');
+    const dashText = spaceText.replace(/-/g, '--');
+    const questText = dashText.replace(/\?/g, '~q');
+    const ampersandText = questText.replace(/&/g, '~a');
+    const hashText = ampersandText.replace(/#/g, '~h');
+    const percentText = hashText.replace(/%/g, '~p');
+    const cleanText = percentText.replace('/', '~s');
+
+    return cleanText;
+  }
+
+  const memeUrl = `https://api.memegen.link/images/${memeKey}/${filterString(
+    topText,
+  )}/${filterString(bottomText)}.png`; // This is how meme URL is built
 
   useEffect(() => {
     fetch('https://api.memegen.link/templates/') // call to URL to get all meme photos
