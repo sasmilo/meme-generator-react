@@ -100,6 +100,7 @@ function MemeGenerator() {
         <button
           className="downloadBtn"
           onClick={(e) => {
+            e.preventDefault();
             download(e);
           }}
         >
@@ -124,6 +125,7 @@ function MemeGenerator() {
               height="40"
               onClick={() => {
                 setRandomImg(meme.blank);
+                setMemeKey(meme.id);
               }}
             />
           </li>
