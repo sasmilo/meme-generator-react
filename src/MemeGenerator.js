@@ -10,6 +10,7 @@ function MemeGenerator() {
     'https://api.memegen.link/images/aag.png',
   );
   const [allMemeImgs, setAllMemeImgs] = useState([]);
+  console.log(allMemeImgs);
 
   const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`; // This is how meme URL is built
 
@@ -18,7 +19,6 @@ function MemeGenerator() {
       .then((response) => response.json()) // We say that we want response in a form of JSON
       .then((response) => {
         setAllMemeImgs(response); // Resulting JSON is the array of memepic objects
-
       });
   }, []);
 
@@ -49,22 +49,43 @@ function MemeGenerator() {
     });
   };
 
+  const [timer, setTimer] = useState(null);
+
+  function changeDelay(change) {
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
+    setTimer(
+      setTimeout(() => {
+        console.log(change);
+      }, 1000),
+    );
+  }
+
   return (
     <div>
-      <form className="meme-form" onSubmit={getNewMeme}>
+      {/* <form className="meme-form" onSubmit={getNewMeme}> */}
+      <form className="meme-form">
         <input
           type="text"
           name="topText"
           placeholder="Top Text"
           value={topText}
-          onChange={(e) => setTopText(e.currentTarget.value)}
+          onChange={(e) => {
+            changeDelay(e.currentTarget.value);
+            setTopText(e.currentTarget.value);
+          }}
         />
         <input
           type="text"
           name="bottomText"
           placeholder="Bottom Text"
           value={bottomText}
-          onChange={(e) => setBottomText(e.currentTarget.value)}
+          onChange={(e) => {
+            changeDelay(e.currentTarget.value);
+            setBottomText(e.currentTarget.value);
+          }}
         />
 
         <button
@@ -73,7 +94,7 @@ function MemeGenerator() {
             getNewMeme(e);
           }}
         >
-          New meme
+          New photo
         </button>
 
         <button
@@ -87,10 +108,27 @@ function MemeGenerator() {
       </form>
 
       <div className="meme">
-        <img src={randomImg} alt="Meme" />
+        <img src={randomImg} alt="Meme" max-width="100%" height="auto" />
+
         <h2 className="top">{topText}</h2>
         <h2 className="bottom">{bottomText}</h2>
       </div>
+      <ul>
+        {allMemeImgs.map((meme, index) => (
+          <li key={index}>
+            <input
+              type="image"
+              src={meme.blank}
+              alt={meme.name}
+              width="50"
+              height="40"
+              onClick={() => {
+                setRandomImg(meme.blank);
+              }}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -19,7 +19,7 @@ code {
 }
 
 .meme > img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .meme > h2 {
@@ -49,16 +49,16 @@ code {
 }
 
 .meme-form {
-  width: 90%;
-  column-gap: 2px;
+  max-width: 90%;
+  column-gap: 5px;
 
   margin: 20px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .meme-form > input {
-  width: 33%;
+  width: auto;
   height: 40px;
   border: none;
   border-radius: 5px;

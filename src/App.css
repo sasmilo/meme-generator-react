@@ -49,3 +49,20 @@ h1 {
 button {
   cursor: pointer;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0 20px 0 18px;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+li {
+  margin-left: 5px;
+}
+
+img {
+  cursor: pointer;
+}
