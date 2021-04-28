@@ -10,9 +10,11 @@ function MemeGenerator() {
     'https://api.memegen.link/images/aag.png',
   );
   const [allMemeImgs, setAllMemeImgs] = useState([]);
-  console.log(allMemeImgs);
+  // console.log(allMemeImgs);
 
   const memeUrl = `https://api.memegen.link/images/${memeKey}/${topText}/${bottomText}.png`; // This is how meme URL is built
+
+  console.log(memeUrl);
 
   useEffect(() => {
     fetch('https://api.memegen.link/templates/') // call to URL to get all meme photos
@@ -49,21 +51,6 @@ function MemeGenerator() {
     });
   };
 
-  const [timer, setTimer] = useState(null);
-
-  function changeDelay(change) {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (timer) {
-      clearTimeout(timer);
-      setTimer(null);
-    }
-    setTimer(
-      setTimeout(() => {
-        console.log(change);
-      }, 1000),
-    );
-  }
-
   return (
     <div>
       <form className="meme-form">
@@ -73,7 +60,6 @@ function MemeGenerator() {
           placeholder="Top Text"
           value={topText}
           onChange={(e) => {
-            changeDelay(e.currentTarget.value);
             setTopText(e.currentTarget.value);
           }}
         />
@@ -83,7 +69,6 @@ function MemeGenerator() {
           placeholder="Bottom Text"
           value={bottomText}
           onChange={(e) => {
-            changeDelay(e.currentTarget.value);
             setBottomText(e.currentTarget.value);
           }}
         />
